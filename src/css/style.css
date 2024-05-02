@@ -1,0 +1,101 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main-poster{
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Optional: full viewport height */
+}
+
+.main-poster img {
+    display: block; /* Ensures no margin/padding around the image */
+    width: 100vw; /* Sets the width to 100% of the viewport width */
+    height: auto; /* Maintain aspect ratio */
+    max-width: 100%; /* Ensures the image does not exceed the width of its container */
+    max-height: 100%;
+}
+
+header {
+    position: fixed; /* Fixes the header's position relative to the viewport */
+    top: 0; /* Aligns the header at the top of the viewport */
+    width: 100%; /* Ensures the header extends full width of the viewport */
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    z-index: 1000; /* High z-index to keep the header above other content */
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Optional: adds shadow for better visibility */
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    background-size: cover;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+}
+
+.logo img, .footer-logo img {
+    width: auto; /* Adjust width for footer logo if necessary */
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 35px;
+}
+
+nav ul li a, .footer-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+}
+
+.search-bar input[type="text"] {
+    padding: 5px;
+    font-size: 16px;
+}
+
+.search-bar button {
+    padding: 5px 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.search-bar button:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    z-index: 1000;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+}
