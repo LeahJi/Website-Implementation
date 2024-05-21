@@ -24,7 +24,7 @@ body {
 }
 
 .logo img, .footer-logo img {
-    width: auto; /* Adjust width for footer logo if necessary */
+    width: auto; 
 }
 
 nav ul {
@@ -79,56 +79,75 @@ footer {
 
 
 /* Start of Carousel */
-.carousel {
-    position: relative;
-    margin: auto;
-    width: 80%;
-    overflow: hidden;
-    height: 70vh; 
-}
 .carousel-container {
     display: flex;
-    transition: transform 0.5s ease;
-}
-.card {
-    min-width: 20%;
-    margin: 100px 10px;
-    transition: transform 0.5s ease;
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-}
-.card.enlarged {
-    transform: scale(1.5);
-}
-.card img {
-    width: auto;
-    height: 35vh; /* Adjust based on your design */
-    object-fit: cover; /* Ensures the image covers the area without distortion */
-}
-.dots {
-    position: absolute;
-    bottom: 10px; /* Position from the bottom */
-    left: 50%; /* Position horizontally at 50% of the carousel's width */
-    transform: translateX(-50%); 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-}
-.dot {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    background: white;
-    border-radius: 50%;
-    margin: 0 5px;
-    cursor: pointer;
-}
-.dot.active {
-    background: #333;
+    width: 80vw;
+    position: relative;
+    margin: auto;
 }
 
+.carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.card {
+    flex: 0 0 16%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.5s, opacity 0.5s;
+    box-sizing: border-box;
+    margin: 0 10px;
+    opacity: 0.5;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.carousel-btn {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 11;
+}
+
+.carousel-btn:focus {
+    outline: none;
+}
+
+.left-btn {
+    left: 0;
+}
+
+.right-btn {
+    right: 0;
+}
+
+.card.selected {
+    transform: scale(1.5);
+    opacity: 1;
+}
+
+.card.hidden {
+    display: none;
+}
 /* End of Carousel */
 
 /* Movie Detail Page */
@@ -157,4 +176,16 @@ footer {
 img {
     width: 400px;
     height: auto;
+}
+
+.showtime-button {
+    margin: 7px;
+    padding: 10px 15px;
+    background-color: gold;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
 }
