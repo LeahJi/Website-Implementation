@@ -3,8 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Database</title>
+    <title>Recommendations</title>
     <link rel="stylesheet" href="./css/style.css">
+
+    <style>
+        #future-movies{
+            display: felx;
+            justify-content: center;
+        }
+        .movie {
+            width: min-content;
+            margin-bottom: 20px;
+            background-color: lightyellow;
+        }
+        .movie img {
+            border-radius: 5px;
+            margin: 20px;
+            width: 150px;
+        }
+    </style>
+
 </head>
 <body>
     <header>
@@ -15,9 +33,9 @@
         </div>
         <nav>
             <ul>
-                <li class="inactive-nav"><a href="#coming-soon">Coming Soon</a></li>
+                <li class="inactive-nav"><a href="coming_soon.html">Coming Soon</a></li>
                 <li class="active-nav"><a href="index.html">Now Showing</a></li>
-                <li class="inactive-nav"><a href="#recommendations.html">Recommendations</a></li>
+                <li class="inactive-nav"><a href="recommendations.html">Recommendations</a></li>
             </ul>
         </nav>
         <div class="search-bar">
@@ -25,17 +43,8 @@
             <button type="submit">Search</button>
         </div>
     </header>
-    <div class="center-text">
-        Now Showing
-    </div>
 
-    <div class="carousel-container">
-        <button class="carousel-btn left-btn" onclick="prevCard()">&#9664;</button>
-        <div class="carousel">
-
-        </div>
-        <button class="carousel-btn right-btn" onclick="nextCard()">&#9654;</button>
-    </div>
+    <div id="future-movies">
 
     </div>
 
@@ -48,6 +57,6 @@
             <img src="https://via.placeholder.com/50.png" alt="Placeholder Image">
         </div>
     </footer>
-    <script src="./js/index.js"></script>
+    <script src="./js/coming_soon.js"></script>
 </body>
 </html>

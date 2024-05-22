@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`, options)
         .then(response => response.json())
         .then(data => {
-            console.log('API Response:', data); // Log the API response to check its structure
+            console.log('API Response:', data); 
             populateFields(data);
         })
         .catch(error => console.error('Error fetching data:', error));
@@ -32,6 +32,7 @@ function populateFields(data) {
     document.querySelector('.details #runtime').innerHTML = `<strong>Runtime:</strong> ${data.runtime || 'Unknown'} minutes`;
     document.querySelector('.details #overview').innerHTML = `<strong>Description:</strong> ${data.overview || 'Unknown'}`;
     document.querySelector('.details #vote').innerHTML = `<strong>Averate Rating:</strong> ${data.vote_average || 'Unknown'} (${data.vote_count || '0'} Votes)`;
+    document.querySelector('html title').innerHTML = `${data.title}`
 }
 
 function generateShowtimes() {
