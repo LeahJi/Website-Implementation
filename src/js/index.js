@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc', options)
         .then(response => response.json())
         .then(data => {
-            createCarousel(data.results.slice(0, 8)); // Only take the first 8 results
+            createCarousel(data.results.slice(0, 5)); // Only take the first 5 results
         })
         .catch(error => console.error('Error fetching data:', error));
 });
@@ -65,8 +65,8 @@ function createCarousel(results) {
         item.classList.add('card');
         item.innerHTML = `
         <a href="detail_page.html?id=${result.id}">
-            <img src="https://image.tmdb.org/t/p/w500${result.poster_path}" alt="${result.title}">
-            <h5>${result.title}</h5>
+            <img src="https://image.tmdb.org/t/p/w500${result.poster_path}" alt="Movie Poster for ${result.title}" aria-label="Detail Page for ${result.title}">
+            <h5 class="index-title">${result.title}</h5>
         </a>
         `;
         carousel.appendChild(item);

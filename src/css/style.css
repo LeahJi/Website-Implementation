@@ -106,7 +106,7 @@ footer {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 75vh;
+    height: 70vh;
     overflow: hidden;
     position: relative;
 }
@@ -130,9 +130,11 @@ footer {
 }
 
 .carousel-btn {
-    background-color: #007bff;
+    background-color: rgb(236, 126, 0);
     border: none;
-    color: white;
+    border-radius: 8px;
+    width: 50px;
+    color: rgb(0, 0, 0);
     padding: 10px;
     cursor: pointer;
     font-size: 1.5rem;
@@ -162,6 +164,12 @@ footer {
 .card.hidden {
     display: none;
 }
+
+.card a{
+    text-decoration: none;
+    color: black;
+}
+
 /* End of Carousel */
 
 /* Movie Detail Page */
@@ -191,11 +199,6 @@ footer {
     margin-top: 10px;
     margin-bottom: 10px;
 }
-
-/* img {
-    width: 400px;
-    height: auto;
-} */
 
 .showtime-button {
     margin: 7px;

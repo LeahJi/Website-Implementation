@@ -11,7 +11,7 @@
     <header>
         <div class="logo">
             <a href="index.html">
-                <img src="image/logo.png" alt="JFQ Movies Logo">
+                <img src="image/logo.png" alt="JFQ Movies Logo" aria-label="Back to Home Page">
             </a>
         </div>
         <nav>
@@ -23,16 +23,16 @@
         </nav>
         <div class="search-bar">
             <input type="text" placeholder="Search movies...">
-            <button type="submit">Search</button>
+            <button type="submit" aria-label="Search Movie by Name">Search</button>
         </div>
     </header>
 
     <div class="carousel-container">
-        <button class="carousel-btn left-btn" onclick="prevCard()">&#9664;</button>
+        <button class="carousel-btn left-btn" onclick="prevCard()" aria-label="Previous Movie" >&#9664;</button>
         <div class="carousel">
 
         </div>
-        <button class="carousel-btn right-btn" onclick="nextCard()">&#9654;</button>
+        <button class="carousel-btn right-btn" onclick="nextCard()" aria-label="Next Movie">&#9654;</button>
     </div>
 
     </div>
@@ -43,7 +43,7 @@
             <a href="#contact">Contact</a>
         </div>
         <div class="footer-logo">
-            <img src="image/user_icon.png" alt="User Profile">
+            <img src="image/user_icon.png" alt="User Profile" aria-label="Open User Profile">
         </div>
     </footer>
     <script src="./js/index.js"></script>

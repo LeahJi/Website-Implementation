@@ -67,7 +67,7 @@
             padding: 10px;
             border-radius: 15px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-            width: calc(25% - 20px); 
+            width: calc(25% - 20px); /* Change this line */
             box-sizing: border-box;
         }
         .movie-item img {
@@ -83,7 +83,7 @@
     <header>
         <div class="logo">
             <a href="index.html">
-                <img src="image/logo.png" alt="JFQ Movies Logo">
+                <img src="image/logo.png" alt="JFQ Movies Logo" aria-label="Back to Home Page">
             </a>
         </div>
         <nav>
@@ -95,7 +95,7 @@
         </nav>
         <div class="search-bar">
             <input type="text" placeholder="Search movies...">
-            <button type="submit">Search</button>
+            <button type="submit" aria-label="Search Movie by Name">Search</button>
         </div>
     </header>
 
@@ -107,7 +107,7 @@
         <div id="box">
             <h2>Select Genres</h2>
             <div id="genres"></div>
-            <button onclick="confirmSelection()">Confirm</button>
+            <button onclick="confirmSelection()" aria-label="Comfirm Genre Selection">Confirm</button>
         </div>
     </div>
 
@@ -117,7 +117,7 @@
             <a href="#contact">Contact</a>
         </div>
         <div class="footer-logo">
-            <img src="image/user_icon.png" alt="User Profile">
+            <img src="image/user_icon.png" alt="User Profile" aria-label="Open User Profile">
         </div>
     </footer>
     <script src="./js/recommendations.js"></script>

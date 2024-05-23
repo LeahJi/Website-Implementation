@@ -1,6 +1,4 @@
-
-
-function confirmSelection() { // when clicking "Confirm"
+function confirmSelection() {
     const selectedGenres = [];
     document.querySelectorAll('#genres input[type="checkbox"]:checked').forEach(checkbox => {
         selectedGenres.push(checkbox.value);
@@ -24,7 +22,7 @@ function confirmSelection() { // when clicking "Confirm"
       
       fetch(apiUrl, options)
         .then(response => response.json())
-        .then(results => displayMovies(results.results))// displayMovies
+        .then(results => displayMovies(results.results))//displayMovies(results))
         .catch(err => console.error(err));
 }
 

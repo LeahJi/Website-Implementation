@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       };
       
-      fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_date.gte=${todayStr}&primary_release_date.lte=${nextMonthStr}2&sort_by=primary_release_date.asc&with_runtime.gte=90&`, options)
+      fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_date.gte=${todayStr}&primary_release_date.lte=${nextMonthStr}2&sort_by=primary_release_date.asc`, options)
         .then(response => response.json())
         .then(data => {
             const movies = data.results;
@@ -27,21 +27,18 @@ document.addEventListener('DOMContentLoaded', () => {
             movies.forEach(movie => {
                 const movieDiv = document.createElement('div');
                 movieDiv.classList.add('movie');
-                const a = document.createElement('a');
-                a.href = `detail_page.html?id=${movie.id}`;
 
                 const poster = document.createElement('img');
                 if (movie.poster_path){
-                  poster.src = `https://image.tmdb.org/t/p/w200${movie.poster_path}` ;
+                  poster.src = `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
                 }
                 else
                 {
                   poster.src = `https://via.placeholder.com/100x150.png`; // use a placeholder if the movie poster is not available now
                 }
-
-                a.appendChild(poster);
                 
-                poster.alt = movie.title;
+                poster.alt = `Movie Poster for ${movie.title}`
+                poster.ariaLabel =  `Detail Page for ${movie.title}`
 
                 const movieRightDiv = document.createElement('div');
                 movieRightDiv.classList.add('movie-right-div');
@@ -60,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }else{overview.textContent = "[Plot overview unavailable]"}
                 
 
-                movieDiv.appendChild(a);
+                movieDiv.appendChild(poster);
                 movieDiv.appendChild(movieRightDiv)
                 movieRightDiv.appendChild(title);
                 movieRightDiv.appendChild(releaseDate);
@@ -74,8 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 });
 
-// Helper function for shortening the movie description.
-// with the help of ChatGPT-4o 
+// Helper function for shortening the movie description. 
 function truncateString(str) {
   const maxLength = 140;
   if (str.length > maxLength) {
