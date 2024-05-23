@@ -3,24 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recommendations</title>
+    <title> Coming Soon | JFQ Movies </title>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Monsieur+La+Doulaise&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
 
     <style>
         #future-movies{
-            display: felx;
             justify-content: center;
         }
         .movie {
-            width: min-content;
-            margin-bottom: 20px;
-            background-color: lightyellow;
+            margin: 20px auto 20px auto;
+            background-color: gold;
+            display: flex;
+            max-width: 600px;
+            border-radius: 15px;
         }
         .movie img {
             border-radius: 5px;
             margin: 20px;
-            width: 150px;
+            width: 100px;
         }
+        .movie-right-div{
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .movie h3{
+            margin-top: 1px;
+        }
+        .movie p{
+            margin-top: 1px;
+        }
+
     </style>
 
 </head>
@@ -28,14 +42,14 @@
     <header>
         <div class="logo">
             <a href="index.html">
-                <img src="https://via.placeholder.com/200x120.png" alt="Movie Database Logo">
+                <img src="image/logo.png" alt="JFQ Movies Logo">
             </a>
         </div>
         <nav>
             <ul>
-                <li class="inactive-nav"><a href="coming_soon.html">Coming Soon</a></li>
-                <li class="active-nav"><a href="index.html">Now Showing</a></li>
-                <li class="inactive-nav"><a href="recommendations.html">Recommendations</a></li>
+                <li class="active-nav"><a href="coming_soon.html">Coming Soon</a></li>
+                <li class="inactive-nav"><a href="index.html">Now Showing</a></li>
+                <li class="inactive-nav"><a href="recommendations.html">For You</a></li>
             </ul>
         </nav>
         <div class="search-bar">
@@ -54,7 +68,7 @@
             <a href="#contact">Contact</a>
         </div>
         <div class="footer-logo">
-            <img src="https://via.placeholder.com/50.png" alt="Placeholder Image">
+            <img src="image/user_icon.png" alt="User Profile">
         </div>
     </footer>
     <script src="./js/coming_soon.js"></script>

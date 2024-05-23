@@ -1,4 +1,6 @@
-function confirmSelection() {
+
+
+function confirmSelection() { // when clicking "Confirm"
     const selectedGenres = [];
     document.querySelectorAll('#genres input[type="checkbox"]:checked').forEach(checkbox => {
         selectedGenres.push(checkbox.value);
@@ -22,7 +24,7 @@ function confirmSelection() {
       
       fetch(apiUrl, options)
         .then(response => response.json())
-        .then(results => displayMovies(results.results))//displayMovies(results))
+        .then(results => displayMovies(results.results))// displayMovies
         .catch(err => console.error(err));
 }
 
@@ -32,12 +34,21 @@ function displayMovies(movies) {
     movies.forEach(movie => {
         const movieItem = document.createElement('div');
         movieItem.className = 'movie-item';
+        var poster_url = ""
+        if (movie.poster_path){
+            poster_url = `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
+          }
+          else
+          {
+            poster_url = `https://via.placeholder.com/200x300.png`; // use a placeholder if the movie poster is not available now
+          }
+        
         movieItem.innerHTML = `
         <a href=detail_page.html?id=${movie.id}>
-            <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+            <img src="${poster_url}" alt="${movie.title}">
             <h3>${movie.title}</h3>
         </a>
-            <p>Rating: ${movie.overview}</p>
+            <p>${truncateString(movie.overview) || "[Plot overview unavailable]"}</p>
         `;
         moviesContainer.appendChild(movieItem);
     });
@@ -68,3 +79,18 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .catch(error => console.error('Error fetching genres:', error));
 });
+
+// Helper function for shortening the movie description. 
+function truncateString(str) {
+    const maxLength = 200;
+    if (str.length > maxLength) {
+        let truncated = str.substring(0, maxLength);
+        let lastSpaceIndex = truncated.lastIndexOf(" ");
+        if (lastSpaceIndex > -1) {
+            truncated = truncated.substring(0, lastSpaceIndex);
+        }
+        return truncated + "...";
+    } else {
+        return str;
+    }
+}

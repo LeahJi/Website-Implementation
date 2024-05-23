@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const today = new Date();
     const nextMonth = new Date(today);
-    nextMonth.setMonth(today.getMonth() + 1);
-
+    nextMonth.setMonth(today.getMonth() + 1); // we want movies that are due to release in the next month
+  
     // Format dates as YYYY-MM-DD
     const formatDate = (date) => date.toISOString().split('T')[0];
     const todayStr = formatDate(today);
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       };
       
-      fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_date.gte=${todayStr}&primary_release_date.lte=${nextMonthStr}2&sort_by=primary_release_date.asc`, options)
+      fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_date.gte=${todayStr}&primary_release_date.lte=${nextMonthStr}2&sort_by=primary_release_date.asc&with_runtime.gte=90&`, options)
         .then(response => response.json())
         .then(data => {
             const movies = data.results;
@@ -27,21 +27,44 @@ document.addEventListener('DOMContentLoaded', () => {
             movies.forEach(movie => {
                 const movieDiv = document.createElement('div');
                 movieDiv.classList.add('movie');
+                const a = document.createElement('a');
+                a.href = `detail_page.html?id=${movie.id}`;
 
                 const poster = document.createElement('img');
-                poster.src = `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
+                if (movie.poster_path){
+                  poster.src = `https://image.tmdb.org/t/p/w200${movie.poster_path}` ;
+                }
+                else
+                {
+                  poster.src = `https://via.placeholder.com/100x150.png`; // use a placeholder if the movie poster is not available now
+                }
+
+                a.appendChild(poster);
+                
                 poster.alt = movie.title;
+
+                const movieRightDiv = document.createElement('div');
+                movieRightDiv.classList.add('movie-right-div');
 
                 const title = document.createElement('h3');
                 title.textContent = movie.title;
 
                 const releaseDate = document.createElement('p');
                 releaseDate.classList.add('release-date');
-                releaseDate.textContent = `Release Date: ${movie.release_date}`;
+                releaseDate.textContent = `To Be Released: ${movie.release_date}`;
 
-                movieDiv.appendChild(poster);
-                movieDiv.appendChild(title);
-                movieDiv.appendChild(releaseDate);
+                const overview = document.createElement('p');
+                overview.classList.add('overview');
+                if (movie.overview){
+                  overview.textContent = `${truncateString(movie.overview)}`;
+                }else{overview.textContent = "[Plot overview unavailable]"}
+                
+
+                movieDiv.appendChild(a);
+                movieDiv.appendChild(movieRightDiv)
+                movieRightDiv.appendChild(title);
+                movieRightDiv.appendChild(releaseDate);
+                movieRightDiv.appendChild(overview)
 
                 futureMoviesDiv.appendChild(movieDiv);
             });
@@ -50,3 +73,19 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('There was a problem with the fetch operation:', error);
         });
 });
+
+// Helper function for shortening the movie description.
+// with the help of ChatGPT-4o 
+function truncateString(str) {
+  const maxLength = 140;
+  if (str.length > maxLength) {
+      let truncated = str.substring(0, maxLength);
+      let lastSpaceIndex = truncated.lastIndexOf(" ");
+      if (lastSpaceIndex > -1) {
+          truncated = truncated.substring(0, lastSpaceIndex);
+      }
+      return truncated + "...";
+  } else {
+      return str;
+  }
+}

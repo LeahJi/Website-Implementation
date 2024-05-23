@@ -1,21 +1,20 @@
-document.addEventListener('DOMContentLoaded', () => {
+var movieId;
 
+document.addEventListener('DOMContentLoaded', () => {
     // Get query parameters from URL
     const params = new URLSearchParams(window.location.search);
-    const movieId = params.get('id'); 
-
+    movieId = params.get('id'); 
     const options = {
         method: 'GET',
         headers: {
           accept: 'application/json',
           Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0NzUwZDJiN2ZiYTA3ODAxNzE1YTg4YmM0MGZiODVjMyIsInN1YiI6IjY2NGI3NTRjZTM0ZjYyMDMyYTU0ODFhOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.oK3lbGYTBQmTDk5eIZq9zKBePNakj-Y2NYY4cOATfug'
-        }
+        } //API token, passowrd from the API
       };
 
     fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`, options)
         .then(response => response.json())
         .then(data => {
-            console.log('API Response:', data); 
             populateFields(data);
         })
         .catch(error => console.error('Error fetching data:', error));
@@ -26,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
 function populateFields(data) {
     document.querySelector('.poster img').src = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
     document.querySelector('.poster img').alt = data.title;
-
     document.querySelector('.details h1').textContent = data.title;
     document.querySelector('.details #date').innerHTML = `<strong>Release Date:</strong> ${data.release_date || 'Unknown'}`;
     document.querySelector('.details #runtime').innerHTML = `<strong>Runtime:</strong> ${data.runtime || 'Unknown'} minutes`;
@@ -36,7 +34,7 @@ function populateFields(data) {
 }
 
 function generateShowtimes() {
-    const showtimes = [
+    const showtimes = [ // Fake movie cinema/time data
         { cinema: 'Cinema One', times: ['12:00 PM', '3:00 PM', '6:00 PM'] },
         { cinema: 'Cinema Two', times: ['1:00 PM', '4:00 PM', '7:00 PM'] },
         { cinema: 'Cinema Three', times: ['2:00 PM', '5:00 PM', '8:00 PM'] }
@@ -50,4 +48,9 @@ function generateShowtimes() {
         paragraph.innerHTML = `<strong>${cinema}:</strong> ${times.map(time => `<button class="showtime-button" onclick="buyTicket('${cinema}', '${time}')">${time}</button>`).join(' ')}`;
         showtimesContainer.appendChild(paragraph);
     });
+}
+
+function buyTicket(cinema, time){
+    const movieName = document.querySelector('html title').innerHTML;
+    window.open(`book_ticket.html?movie=${movieName}&venue=${cinema}&time=${time}`);
 }

@@ -10,7 +10,7 @@ function updateCarousel() {
 
         if (index === currentIndex) {
             card.classList.add('selected');
-            card.style.transform = `translateX(${(index - currentIndex) * 50}%) scale(1.5)`;
+            card.style.transform = `translateX(${(index - currentIndex) * 50}%) scale(1.75)`;
             card.style.opacity = '1';
         } else if (Math.abs(index - currentIndex) > 2) {
             card.classList.add('hidden');
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc', options)
         .then(response => response.json())
         .then(data => {
-            createCarousel(data.results.slice(0, 5)); // Only take the first 5 results
+            createCarousel(data.results.slice(0, 8)); // Only take the first 8 results
         })
         .catch(error => console.error('Error fetching data:', error));
 });
